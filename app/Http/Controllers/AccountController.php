@@ -12,8 +12,12 @@ class AccountController extends Controller
         $account = Account::where('id', $id)->first();
         if ($account->active) {
             $account->active = false;
+            $account->user->current_users--;
+            $account->user->save();
         } else {
             $account->active = true;
+            $account->user->current_users++;
+            $account->user->save();
         }
         $account->save();
 
@@ -31,6 +35,9 @@ class AccountController extends Controller
         $account->ifsc = $request->input('ifsc');
         $account->account_number = $request->input('number');
         $account->user_id = auth()->user()->id;
+        auth()->user()->current_users++;
+
+        auth()->user()->save();
         $account->save();
 
         return redirect()->back();

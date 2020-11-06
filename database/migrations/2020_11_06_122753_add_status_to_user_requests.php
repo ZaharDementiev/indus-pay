@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldsToUsers extends Migration
+class AddStatusToUserRequests extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddFieldsToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('active')->default(1);
-            $table->bigInteger('current_users')->default(0);
+        Schema::table('user_requests', function (Blueprint $table) {
+            $table->smallInteger('status')->default(0);
         });
     }
 
@@ -26,7 +25,7 @@ class AddFieldsToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('user_requests', function (Blueprint $table) {
             //
         });
     }

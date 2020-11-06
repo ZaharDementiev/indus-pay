@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -39,7 +40,20 @@ class HomeController extends Controller
 
     public function requests()
     {
-        return view('requests');
+        $status = UserRequest::WAITING;
+        return view('requests', compact('status'));
+    }
+
+    public function requestsAccepted()
+    {
+        $status = UserRequest::ACCEPTED;
+        return view('requests', compact('status'));
+    }
+
+    public function requestsDenied()
+    {
+        $status = UserRequest::DENIED;
+        return view('requests', compact('status'));
     }
 
     public function login()

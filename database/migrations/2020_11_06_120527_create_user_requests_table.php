@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldsToUsers extends Migration
+class CreateUserRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddFieldsToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('active')->default(1);
-            $table->bigInteger('current_users')->default(0);
+        Schema::create('user_requests', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('friendsonly_user_id');
+            $table->string('code');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class AddFieldsToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('user_requests');
     }
 }

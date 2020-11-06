@@ -4,8 +4,7 @@
     <div class="d-print-none with-border users-table">
         <a href="{{route('add.account')}}" class="btn btn-primary" data-style="zoom-in">
             <span class="ladda-label">
-                <i class="la la-plus">
-                </i>Добавить аккаунт
+                Добавить аккаунт
             </span>
         </a>
     </div>
