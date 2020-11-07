@@ -41,7 +41,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach(auth()->user()->requests()->where('status', $status)->get() as $request)
+        @foreach(auth()->user()->requests()->where('status', $status)->paginate(\App\UserRequest::REQUESTS_ON_PAGE) as $request)
             <tr role="row" class="odd">
                 <td>
                     <span>
@@ -71,4 +71,5 @@
         </tr>
         </tfoot>
     </table>
+    {{auth()->user()->requests()->where('status', $status)->paginate(\App\UserRequest::REQUESTS_ON_PAGE)->links()}}
 @endsection
