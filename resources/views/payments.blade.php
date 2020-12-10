@@ -2,21 +2,21 @@
 
 @section('content')
     <div class="d-print-none with-border users-table">
-        <a href="{{route('requests')}}" class="btn @if(Request::is('requests'))btn-primary"
-            @else " @endif data-style="zoom-in">
-            <span class="ladda-label">
+        <a href="{{route('payment')}}" class="btn @if(Request::is('payment'))btn-primary"
+        @else " @endif data-style="zoom-in">
+        <span class="ladda-label">
                 На рассмотрении
             </span>
         </a>
-        <a href="{{route('requests.accepted')}}" class="btn @if(Request::is('requests/accepted'))btn-primary"
-            @else " @endif data-style="zoom-in">
-            <span class="ladda-label">
+        <a href="{{route('payment.accepted')}}" class="btn @if(Request::is('payment/accepted'))btn-primary"
+        @else " @endif data-style="zoom-in">
+        <span class="ladda-label">
                 Подтвержденные
             </span>
         </a>
-        <a href="{{route('requests.denied')}}" class="btn @if(Request::is('requests/denied'))btn-primary"
-            @else " @endif data-style="zoom-in">
-            <span class="ladda-label">
+        <a href="{{route('payment.denied')}}" class="btn @if(Request::is('payment/denied'))btn-primary"
+        @else " @endif data-style="zoom-in">
+        <span class="ladda-label">
                 Отклоненные
             </span>
         </a>
@@ -27,13 +27,9 @@
         <thead>
         <tr role="row">
             <th>
-                Код банка
-            </th>
+                Имя
             <th>
-                IFSC
-            </th>
-            <th>
-                Привязанный аккаунт
+                Номер банка
             </th>
             <th>
                 Сумма
@@ -44,42 +40,34 @@
         </tr>
         </thead>
         <tbody>
-        @foreach(auth()->user()->requests()->where('status', $status)->paginate(\App\UserRequest::REQUESTS_ON_PAGE) as $request)
+        @foreach(auth()->user()->payments()->where('status', $status)->paginate(\App\Payment::REQUESTS_ON_PAGE) as $payment)
             <tr role="row" class="odd">
                 <td>
                     <span>
-                        {{$request->bank_code}}
+                        {{$payment->name}}
                     </span>
                 </td>
                 <td>
                     <span>
-                        {{$request->ifsc}}
+                        {{$payment->bank_number	}}
                     </span>
                 </td>
                 <td>
                     <span>
-
-                        {{$request->getAccount()->account_number}}
+                        {{$payment->sum}}
                     </span>
                 </td>
                 <td>
-                    <span>
-                        {{$request->sum	}}
-                    </span>
-                </td>
-                <td>
-                    <a href="{{route('requests.edit.page', $request->id)}}" class="btn btn-sm btn-link">Сменить статус</a>
+                    <a href="{{route('payment.edit.page', $payment->id)}}" class="btn btn-sm btn-link">Сменить статус</a>
                 </td>
             </tr>
         @endforeach
         </tbody>
         <tfoot>
         <tr>
-            <th rowspan="1" colspan="1">Код банка</th>
-            <th rowspan="1" colspan="1">IFSC</th>
-            <th rowspan="1" colspan="1">Привязанный аккаунт</th>
+            <th rowspan="1" colspan="1">Имя</th>
+            <th rowspan="1" colspan="1">Номер банка</th>
             <th rowspan="1" colspan="1">Сумма</th>
-            <th rowspan="1" colspan="1">Действия</th>
         </tr>
         </tfoot>
     </table>

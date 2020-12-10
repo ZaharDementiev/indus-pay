@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserIdToUserRequests extends Migration
+class AddNameToAccounts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddUserIdToUserRequests extends Migration
      */
     public function up()
     {
-        Schema::table('user_requests', function (Blueprint $table) {
-            $table->bigInteger('user_id')->nullable();
+        Schema::table('accounts', function (Blueprint $table) {
+            $table->string('name');
         });
     }
 
@@ -25,7 +25,7 @@ class AddUserIdToUserRequests extends Migration
      */
     public function down()
     {
-        Schema::table('user_requests', function (Blueprint $table) {
+        Schema::table('accounts', function (Blueprint $table) {
             //
         });
     }

@@ -17,6 +17,8 @@
     <link href="/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
 </head>
 
+<div hidden></div>
+
 <body class="">
 <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
@@ -40,7 +42,13 @@
                 <li class="nav-item @if(Request::is('requests/*') || Request::is('requests'))active"@else " @endif>
                 <a class="nav-link" href="{{route('requests')}}">
                     <i class="material-icons">content_paste</i>
-                    <p>Заявки</p>
+                    <p>Заявки с данными</p>
+                </a>
+                </li>
+                <li class="nav-item @if(Request::is('payment/*') || Request::is('payment'))active"@else " @endif>
+                <a class="nav-link" href="{{route('payment')}}">
+                    <i class="material-icons">attach_money</i>
+                    <p>Оплаты</p>
                 </a>
                 </li>
                 <li class="nav-item ">
@@ -240,6 +248,18 @@
 
     });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+<script>
+    var socket = io(':6001');
+    socket.on('user-data-{{auth()->id()}}:newPayment', function(data) {
+        $('#id_моегоблока').show();
+    });
+    socket.on('account-{{auth()->id()}}:newDonePayment', function(data) {
+        $('#id_моегоблока').show();
+    });
+</script>
+
 </body>
 
 </html>

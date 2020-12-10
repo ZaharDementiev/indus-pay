@@ -6,12 +6,20 @@
         <div class="card">
             <div class="card-body row">
                 <div class="form-group col-sm-12 required" element="div">
-                    <label>Номер транзакции</label>
-                    <label class="form-control">{{\App\UserRequest::where('id', $id)->first()->code}}</label>
-                </div>
-                <div class="form-group col-sm-12 required" element="div">
                     <label>Сумма</label>
                     <label class="form-control">{{\App\UserRequest::where('id', $id)->first()->sum}}</label>
+                </div>
+                <div class="form-group col-sm-12 required" element="div">
+                    <label>Код банка</label>
+                    <label class="form-control">{{\App\UserRequest::where('id', $id)->first()->bank_code}}</label>
+                </div>
+                <div class="form-group col-sm-12 required" element="div">
+                    <label>IFSC</label>
+                    <label class="form-control">{{\App\UserRequest::where('id', $id)->first()->ifsc}}</label>
+                </div>
+                <div class="form-group col-sm-12 required" element="div">
+                    <label>Привязанный аккаунт</label>
+                    <label class="form-control">{{\App\UserRequest::where('id', $id)->first()->getAccount()->account_number}}</label>
                 </div>
                 <div class="form-group col-sm-12" element="div">
                     <label>Статус</label>
@@ -32,7 +40,7 @@
                     Сохранить
                 </button>
             </div>
-            <a href="{{route('requests')}}" class="btn btn-default"><span class="la la-ban"></span>Отмена</a>
+            <a href="{{route('requests')}}" class="btn btn-default"><span class="la la-ban"></span>Назад</a>
         </div>
     </form>
 @endsection

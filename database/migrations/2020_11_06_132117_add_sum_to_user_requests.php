@@ -14,7 +14,7 @@ class AddSumToUserRequests extends Migration
     public function up()
     {
         Schema::table('user_requests', function (Blueprint $table) {
-            $table->bigInteger('sum');
+            $table->bigInteger('sum')->nullable();
         });
     }
 

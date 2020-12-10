@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserIdToUserRequests extends Migration
+class AddStatusToPayments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddUserIdToUserRequests extends Migration
      */
     public function up()
     {
-        Schema::table('user_requests', function (Blueprint $table) {
-            $table->bigInteger('user_id')->nullable();
+        Schema::table('payments', function (Blueprint $table) {
+            $table->smallInteger('status')->default(0);
         });
     }
 
@@ -25,7 +25,7 @@ class AddUserIdToUserRequests extends Migration
      */
     public function down()
     {
-        Schema::table('user_requests', function (Blueprint $table) {
+        Schema::table('payments', function (Blueprint $table) {
             //
         });
     }

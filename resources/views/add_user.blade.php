@@ -13,6 +13,10 @@
                     <label>IFSC</label>
                     <input type="text" name="ifsc" value="" class="form-control">
                 </div>
+                <div class="form-group col-sm-12" element="div">
+                    <label>Имя</label>
+                    <input type="text" name="name" value="" class="form-control">
+                </div>
             </div>
         </div>
         <div id="saveActions" class="form-group">
@@ -21,7 +25,7 @@
                     Добавить
                 </button>
             </div>
-            <a href="{{route('accounts')}}" class="btn btn-default"><span class="la la-ban"></span>Отмена</a>
+            <a href="{{route('accounts')}}" class="btn btn-default"><span class="la la-ban"></span>Назад</a>
         </div>
     </form>
 @endsection
