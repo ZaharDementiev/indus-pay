@@ -20,6 +20,9 @@
                     IFSC
                 </th>
                 <th>
+                    Имя
+                </th>
+                <th>
                     Действия
                 </th>
             </tr>
@@ -38,6 +41,11 @@
                         </span>
                     </td>
                     <td>
+                        <span>
+                            {{$account->name}}
+                        </span>
+                    </td>
+                    <td>
                         <a href="{{route('change.active', $account->id)}}" class="btn btn-sm btn-link @if($account->active) account-active"> Активный&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             @else account-non-active">Не активный @endif</a>
 
@@ -53,6 +61,7 @@
             <tr>
                 <th rowspan="1" colspan="1">Номер аккаунта	</th>
                 <th rowspan="1" colspan="1">IFSC</th>
+                <th rowspan="1" colspan="1">Имя</th>
                 <th rowspan="1" colspan="1">Действия</th>
             </tr>
         </tfoot>

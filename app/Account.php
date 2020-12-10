@@ -10,4 +10,9 @@ class Account extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function userRequest()
+    {
+        return $this->belongsToMany(UserRequest::class);
+    }
 }

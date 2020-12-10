@@ -15,8 +15,6 @@ class CreateUserRequestsTable extends Migration
     {
         Schema::create('user_requests', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('friendsonly_user_id');
-            $table->string('code');
             $table->timestamps();
         });
     }

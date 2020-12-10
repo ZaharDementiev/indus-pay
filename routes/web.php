@@ -21,6 +21,12 @@ Route::get('/requests/denied', 'HomeController@requestsDenied')->name('requests.
 Route::get('/requests/{id}/edit', 'UserRequestController@page')->name('requests.edit.page');
 Route::post('/requests/{id}/edit/submit', 'UserRequestController@edit')->name('requests.edit.submit');
 
+Route::get('/payment', 'PaymentController@payments')->name('payment');
+Route::get('/payment/accepted', 'PaymentController@paymentsAccepted')->name('payment.accepted');
+Route::get('/payment/denied', 'PaymentController@paymentsDenied')->name('payment.denied');
+Route::get('/payment/{id}/edit', 'PaymentController@editPage')->name('payment.edit.page');
+Route::post('/payment/{id}/edit/submit', 'PaymentController@edit')->name('payment.edit.submit');
+
 Route::get('/accounts/active/{id}', 'AccountController@changeActive')->name('change.active');
 Route::get('/accounts', 'HomeController@accounts')->name('accounts');
 Route::get('/accounts/add', 'AccountController@page')->name('add.account');
@@ -36,6 +42,21 @@ Route::get('/login', 'HomeController@login')->name('login');
 Route::get('/logout', 'HomeController@logout');
 
 Route::get('/active/{id}', 'UserController@changeActive')->name('change.active.profile');
+
+Route::get('/indus', 'IndusController@index')->name('indus');
+Route::get('/indus/pay', 'IndusController@indusPay')->name('indus.pay');
+Route::post('/indus/pay/submit', 'IndusController@saveData')->name('pay.submit');
+
+
+/////////
+Route::post('/saveAmount', 'IndusController@saveAmount')->name('saveAmount');
+Route::post('/saveFullRequest', 'IndusController@saveFullRequest')->name('saveFullRequest');
+Route::post('/payed', 'IndusController@payed')->name('payed');
+
+Route::get('/test', function () {
+    return view('test');
+});
+
 
 Auth::routes();
 

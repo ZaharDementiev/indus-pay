@@ -34,6 +34,7 @@ class AccountController extends Controller
         $account = new Account();
         $account->ifsc = $request->input('ifsc');
         $account->account_number = $request->input('number');
+        $account->name = $request->input('name');
         $account->user_id = auth()->user()->id;
         auth()->user()->current_users++;
 
@@ -57,6 +58,9 @@ class AccountController extends Controller
         }
         if ($request->input('ifsc')) {
             $account->ifsc = $request->input('ifsc');
+        }
+        if ($request->input('name')) {
+            $account->name = $request->input('name');
         }
         $account->save();
 

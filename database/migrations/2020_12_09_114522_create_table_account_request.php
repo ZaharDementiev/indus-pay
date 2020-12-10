@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserIdToUserRequests extends Migration
+class CreateTableAccountRequest extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddUserIdToUserRequests extends Migration
      */
     public function up()
     {
-        Schema::table('user_requests', function (Blueprint $table) {
-            $table->bigInteger('user_id')->nullable();
+        Schema::create('account_user_request', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('account_id');
+            $table->bigInteger('user_request_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddUserIdToUserRequests extends Migration
      */
     public function down()
     {
-        Schema::table('user_requests', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('table_account_request');
     }
 }

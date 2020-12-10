@@ -16,4 +16,16 @@ class UserRequest extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
+
+    public function getAccount()
+    {
+        $accountRequest = AccountRequest::where('user_request_id', $this->id)->first();
+        $account = Account::where('id', $accountRequest->account_id)->first();
+        return $account;
+    }
 }
